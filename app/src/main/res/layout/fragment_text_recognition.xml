@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="DOCUMENT TITLE"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"></TextView>
 
             <EditText
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:scrollbars="vertical"
-                android:text="SCAN FOR TEXT IN AN IMAGE"
+                android:text="YOUR SCANNED TEXT GOES HERE"
                 android:textSize="16dp" />
 
         </LinearLayout>
