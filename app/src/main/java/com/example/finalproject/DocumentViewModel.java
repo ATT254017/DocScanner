@@ -1,19 +1,22 @@
 package com.example.finalproject;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-public class DocumentViewModel extends ViewModel {
+public class DocumentViewModel extends AndroidViewModel {
 
     private DocumentRepository repository;
 
-    public DocumentViewModel() {
-        repository = DocumentRepository.getInstance();
+    public DocumentViewModel(Application app) {
+        super(app);
+        repository = DocumentRepository.getInstance(app);
     }
 
-    public LiveData<List<Document>> getAllNotes() {
+    public LiveData<List<Document>> getAllDocuments() {
         return repository.getAllDocuments();
     }
 
@@ -21,7 +24,15 @@ public class DocumentViewModel extends ViewModel {
         repository.insert(doc);
     }
 
-    public void deleteAllNotes() {
+    public void update(Document doc) {
+        repository.update(doc);
+    }
+
+    public void delete(Document doc) {
+        repository.delete(doc);
+    }
+
+    public void deleteAllDocuments() {
         repository.deleteAllDocuments();
     }
 

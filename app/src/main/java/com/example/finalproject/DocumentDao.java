@@ -1,43 +1,31 @@
 package com.example.finalproject;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DocumentDao {
+@Dao
+public interface DocumentDao {
 
-    private MutableLiveData<List<Document>> allDocuments;
-    private static DocumentDao instance;
+    @Insert
+    void insert(Document document);
 
-    private DocumentDao() {
-        allDocuments = new MutableLiveData<>();
-        List<Document> newList = new ArrayList<>();
-        allDocuments.setValue(newList);
-    }
+    @Update
+    void update(Document document);
 
-    public static DocumentDao getInstance() {
-        if(instance == null) {
-            instance = new DocumentDao();
-        }
+    @Delete
+    void delete(Document document);
 
-        return instance;
-    }
+    @Query("DELETE FROM document_table")
+    void deleteAllDocuments();
 
-    public LiveData<List<Document>> getAllDocuments() {
-        return allDocuments;
-    }
+    @Query("SELECT * FROM document_table")
+    LiveData<List<Document>> getAllDocuments();
 
-    public void insert(Document doc) {
-        List<Document> currentNotes = allDocuments.getValue();
-        currentNotes.add(doc);
-        allDocuments.setValue(currentNotes);
-    }
-
-    public void deleteAllDocuments() {
-        List<Document> newList = new ArrayList<>();
-        allDocuments.setValue(newList);
-    }
 
 }
