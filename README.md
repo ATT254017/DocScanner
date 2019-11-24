@@ -3,4 +3,5 @@ This app was made to detect text on images and saving the text to local storage,
 
 # Resources
 Android Studio: https://developer.android.com/guide
+
 MLKIT: https://firebase.google.com/docs/ml-kit/android/recognize-text
