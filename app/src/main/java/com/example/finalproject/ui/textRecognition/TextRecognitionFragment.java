@@ -64,6 +64,7 @@ public class TextRecognitionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 detectTextFromImage();
+                textView.setText("");
             }
         });
 

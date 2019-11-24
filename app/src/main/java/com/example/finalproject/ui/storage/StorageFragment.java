@@ -23,11 +23,10 @@ public class StorageFragment extends Fragment {
         storageViewModel =
                 ViewModelProviders.of(this).get(StorageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_storage, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        TextView textView = root.findViewById(R.id.text_notifications);
         storageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
             }
         });
         return root;
