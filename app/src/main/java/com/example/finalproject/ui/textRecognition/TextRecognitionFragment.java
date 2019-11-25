@@ -91,6 +91,7 @@ public class TextRecognitionFragment extends Fragment {
         return root;
     }
 
+    // Save recognized text to local storage
     public void saveDocument() {
         if(editText.getText().toString().trim().isEmpty()) {
             Toast.makeText(getContext(), "Please add a TITLE to save your document!", Toast.LENGTH_LONG).show();
@@ -102,6 +103,7 @@ public class TextRecognitionFragment extends Fragment {
         }
     }
 
+    // Call camera intent
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -109,6 +111,7 @@ public class TextRecognitionFragment extends Fragment {
         }
     }
 
+    // Get picture taken as Bitmap
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -118,6 +121,7 @@ public class TextRecognitionFragment extends Fragment {
         }
     }
 
+    // Input picture taken into a FirebaseVisionImage and process it
     private void detectTextFromImage() {
         FirebaseVisionImage fireBaseVisionImage = FirebaseVisionImage.fromBitmap(imageBitmap);
         FirebaseVisionTextRecognizer firebaseVisionTextRecognizer = FirebaseVision.getInstance().getCloudTextRecognizer();
@@ -135,6 +139,7 @@ public class TextRecognitionFragment extends Fragment {
         });
     }
 
+    // Display recognized text in the TextView
     private void displayTextFromImageDetection(FirebaseVisionText firebaseVisionText) {
         List<FirebaseVisionText.TextBlock> blockList = firebaseVisionText.getTextBlocks();
 
